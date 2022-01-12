@@ -33,8 +33,8 @@ public class RobotContainer {
   public final static pnuematics m_pnuematics = new pnuematics();
 
   public final static driveTrain m_drivetrain = new driveTrain();
-  public final static FrontClimbers m_FrontClimbers = new FrontClimbers();
-  public final static Hook m_Hook = new Hook();
+  public final static FrontClimbers m_frontclimbers = new FrontClimbers();
+  public final static Hook m_hook = new Hook();
 
   public final static arm m_arm = new arm();
 
@@ -43,9 +43,9 @@ public class RobotContainer {
   private final intakeHome m_armintakehome = new intakeHome();
   private final intakeEat m_armintakeat = new intakeEat();
 
-  private final FrontClimbersDefault m_FrontClimbersdefualf = new FrontClimbersDefault();
-  private final FrontClimbersExtended m_FrontClimbersextended = new FrontClimbersExtended();
-  private final FrontClimbersEndGame m_FrontClimbersendgame = new FrontClimbersEndGame();
+  private final FrontClimbersDefault m_frontclimbersdefault = new FrontClimbersDefault();
+  private final FrontClimbersExtended m_frontclimbersextended = new FrontClimbersExtended();
+  private final FrontClimbersEndGame m_frontclimbersendgame = new FrontClimbersEndGame();
   
 
 
