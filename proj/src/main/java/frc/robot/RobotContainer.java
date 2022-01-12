@@ -8,15 +8,15 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.climberS1Defualt;
-import frc.robot.commands.climberS1EndGame;
-import frc.robot.commands.climberS1Extended;
+import frc.robot.commands.FrontClimbersDefault;
+import frc.robot.commands.FrontClimbersEndGame;
+import frc.robot.commands.FrontClimbersExtended;
 import frc.robot.commands.intakeEat;
 import frc.robot.commands.intakeHome;
 import frc.robot.commands.popper;
 import frc.robot.subsystems.arm;
-import frc.robot.subsystems.climberS1;
-import frc.robot.subsystems.climberS2;
+import frc.robot.subsystems.FrontClimbers;
+import frc.robot.subsystems.Hook;
 import frc.robot.subsystems.driveTrain;
 import frc.robot.subsystems.pnuematics;
 
@@ -33,8 +33,8 @@ public class RobotContainer {
   public final static pnuematics m_pnuematics = new pnuematics();
 
   public final static driveTrain m_drivetrain = new driveTrain();
-  public final static climberS1 m_climbers1 = new climberS1();
-  public final static climberS2 m_climbers2 = new climberS2();
+  public final static FrontClimbers m_FrontClimbers = new FrontClimbers();
+  public final static Hook m_Hook = new Hook();
 
   public final static arm m_arm = new arm();
 
@@ -43,9 +43,9 @@ public class RobotContainer {
   private final intakeHome m_armintakehome = new intakeHome();
   private final intakeEat m_armintakeat = new intakeEat();
 
-  private final climberS1Defualt m_climbers1defualf = new climberS1Defualt();
-  private final climberS1Extended m_climbers1extended = new climberS1Extended();
-  private final climberS1EndGame m_climbers1endgame = new climberS1EndGame();
+  private final FrontClimbersDefault m_FrontClimbersdefualf = new FrontClimbersDefault();
+  private final FrontClimbersExtended m_FrontClimbersextended = new FrontClimbersExtended();
+  private final FrontClimbersEndGame m_FrontClimbersendgame = new FrontClimbersEndGame();
   
 
 
@@ -120,9 +120,9 @@ public class RobotContainer {
     //buttonA.whenPressed(new pnuematicsCmd(solenoidIntakeArmForward));
 
 
-    buttonA.whenPressed(new climberS1Defualt());
-    buttonB.whenPressed(new climberS1Extended());
-    buttonX.whenPressed(new climberS1EndGame());
+    buttonA.whenPressed(new FrontClimbersDefault());
+    buttonB.whenPressed(new FrontClimbersExtended());
+    buttonX.whenPressed(new FrontClimbersEndGame());
 
     bumperLeft.whenPressed(new intakeEat());
     bumperRight.whenPressed(new intakeHome());
