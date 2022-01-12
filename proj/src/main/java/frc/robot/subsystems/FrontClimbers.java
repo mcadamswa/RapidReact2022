@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
@@ -14,11 +15,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class climberS2 extends SubsystemBase {
+public class FrontClimbers extends SubsystemBase {
 
 
-  private WPI_TalonFX left = new WPI_TalonFX(Constants.climberS1MotorLeft);
-  private WPI_TalonFX right = new WPI_TalonFX(Constants.climberS1MotorRight);
+  private WPI_TalonFX left = new WPI_TalonFX(Constants.FrontClimbersMotorLeft);
+  private WPI_TalonFX right = new WPI_TalonFX(Constants.FrontClimbersMotorRight);
 
   /*
 	 * Talon FX has 2048 units per revolution
@@ -27,8 +28,8 @@ public class climberS2 extends SubsystemBase {
 	 */
 	final int kUnitsPerRevolution = 2048; /* this is constant for Talon FX */
 
-   /** Creates a new climberS1. */
-  public climberS2() {
+   /** Creates a new FrontClimbers. */
+  public FrontClimbers() {
 
     left.configFactoryDefault();
 		right.configFactoryDefault(); 
@@ -71,7 +72,13 @@ public class climberS2 extends SubsystemBase {
     return selSenVel;
   }
 
+  public void setClimberPostion(double targetPos) {
+  left.set(ControlMode.MotionMagic, targetPos);
+  }
 
+  public void setInverted() {
+    left.setInverted(true);
+  }
 
 
 }

@@ -18,8 +18,8 @@ public final class Constants {
  // hid ports \\ 
     public static int portDriverController = 0;
     public static int portCoDriverController = 1;
-	public static int climberS1MotorLeft;
-	public static int climberS1MotorRight;
+	public static int FrontClimbersMotorLeft;
+	public static int FrontClimbersMotorRight;
 	public static int armPort;
    
          
