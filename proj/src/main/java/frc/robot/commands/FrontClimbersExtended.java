@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
-public class climberS1Extended extends CommandBase {
-  /** Creates a new climberS1Extended. */
-  public climberS1Extended() {
+public class FrontClimbersExtended extends CommandBase {
+  /** Creates a new FrontClimbersExtended. */
+  public FrontClimbersExtended() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -23,7 +23,7 @@ public class climberS1Extended extends CommandBase {
   public void execute() {
 
     //figure out the top climber position
-    RobotContainer.m_climbers1.setClimberPostion(4000);
+    RobotContainer.m_frontclimbers.setClimberPostion(4000);
 
 
   }
