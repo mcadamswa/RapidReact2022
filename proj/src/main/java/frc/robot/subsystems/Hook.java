@@ -24,7 +24,7 @@ public class Hook extends SubsystemBase {
 	 */
 	final int kUnitsPerRevolution = 2048; /* this is constant for Talon FX */
 
-   /** Creates a new climberS1. */
+   /** Creates a new FrontClimbers. */
   public Hook() {
 
     left.configFactoryDefault();
