@@ -7,9 +7,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class climberS1EndGame extends CommandBase {
-  /** Creates a new climberS2EndGame. */
-  public climberS1EndGame() {
+public class FrontClimbersEndGame extends CommandBase {
+  /** Creates a new HookEndGame. */
+  public FrontClimbersEndGame() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -21,8 +21,8 @@ public class climberS1EndGame extends CommandBase {
   @Override
   public void execute() {
 
-    //RobotContainer.m_climbers1.setInverted();
-    RobotContainer.m_climbers1.setClimberPostion(0);
+    //RobotContainer.m_FrontClimbers.setInverted();
+    RobotContainer.m_frontclimbers.setClimberPostion(0);
 
 
 
