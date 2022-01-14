@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class driveCommand extends CommandBase {
   /** Creates a new driveCommand. */
-  public driveCommand() {
+  public DriveCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
