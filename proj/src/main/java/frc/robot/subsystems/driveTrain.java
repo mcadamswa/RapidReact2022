@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class driveTrain extends SubsystemBase {
   /** Creates a new drivetrain. */
-  public driveTrain() {
+  public DriveTrain() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
