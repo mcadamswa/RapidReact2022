@@ -2,26 +2,37 @@
 // Bischop Blanchet Robotics
 // Historic home of the 'BraveBots'
 // FRC - Rapid React - 2022
-// File: FrontClimbersEndGame.java
-// Intent: Move the climbers through their end of game sequence.
+// File: RobotInitalize.java
+// Intent: Resets the robot to reference settings.
 // ************************************************************
 
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.FrontClimbers;
+import frc.robot.subsystems.*;
 
-public class FrontClimbersExtended extends CommandBase
-{
- 
+public class RobotInitialize  extends CommandBase {
+  /** Creates a new zeroSensors. 
+ * @param frontClimbers
+ * @param hooks
+ * @param arm*/
+
+  private Arm armSubsystem;
   private FrontClimbers frontClimbersSubsystem;
+  private Hooks hooksSubsystem;
 
-  // ctor
-  public FrontClimbersExtended(FrontClimbers frontClimbers)
-  {
-    frontClimbersSubsystem = frontClimbers;
+  public RobotInitialize(Arm arm, FrontClimbers frontClimbers, Hooks hooks) {
     // Use addRequirements() here to declare subsystem dependencies.
+
+    this.armSubsystem = arm;
+    addRequirements(this.armSubsystem);
+
+    this.frontClimbersSubsystem = frontClimbers;
+    addRequirements(this.frontClimbersSubsystem);
+
+    this.hooksSubsystem = hooks;
+    addRequirements(this.hooksSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -32,7 +43,11 @@ public class FrontClimbersExtended extends CommandBase
   @Override
   public void execute()
   {
-    frontClimbersSubsystem.setClimberPostion(0);
+    armSubsystem.zeroSensors();
+    //m_climbers1.zeroSensors();
+    //m_climbers2.zeroSensors();
+    //TODO add anyother sensors 
+    System.out.println(armSubsystem.getPosition());
   }
 
   // Called once the command ends or is interrupted.

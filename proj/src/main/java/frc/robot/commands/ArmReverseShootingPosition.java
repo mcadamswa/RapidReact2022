@@ -2,42 +2,53 @@
 // Bischop Blanchet Robotics
 // Historic home of the 'BraveBots'
 // FRC - Rapid React - 2022
-// File: FrontClimbersEndGame.java
-// Intent: Move the climbers through their end of game sequence.
+// File: ArmReverseShootingPosition.java
+// Intent: Move the arm into the reverse shooting position.
 // ************************************************************
 
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
-import frc.robot.subsystems.FrontClimbers;
+import frc.robot.Constants;
+import frc.robot.subsystems.*;
 
-public class FrontClimbersExtended extends CommandBase
+public class ArmReverseShootingPosition extends CommandBase
 {
- 
-  private FrontClimbers frontClimbersSubsystem;
+
+  private Arm armSubsystem;
+  boolean done;
 
   // ctor
-  public FrontClimbersExtended(FrontClimbers frontClimbers)
+  public ArmReverseShootingPosition(Arm arm)
   {
-    frontClimbersSubsystem = frontClimbers;
     // Use addRequirements() here to declare subsystem dependencies.
+    this.armSubsystem = arm;
+    addRequirements(armSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize()
+  {
+    done = false;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute()
   {
-    frontClimbersSubsystem.setClimberPostion(0);
+    armSubsystem.setArmPosition(Constants.armDefualt);
+    //RobotContainer.m_arm.setArmPosition(0);
+
+    //  armSubsystem.isFinished(done, Constants.armDefualt);
+    System.out.println(armSubsystem.getPosition());
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted)
+  {
+  }
 
   // Returns true when the command should end.
   @Override

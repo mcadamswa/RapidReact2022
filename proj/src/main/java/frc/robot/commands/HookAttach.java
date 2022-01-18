@@ -2,26 +2,26 @@
 // Bischop Blanchet Robotics
 // Historic home of the 'BraveBots'
 // FRC - Rapid React - 2022
-// File: FrontClimbersEndGame.java
-// Intent: Move the climbers through their end of game sequence.
+// File: HookAttach.java
+// Intent: Command/operation to attach the hooks to to the arm.
 // ************************************************************
 
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.FrontClimbers;
+import frc.robot.subsystems.Hooks;
 
-public class FrontClimbersExtended extends CommandBase
+public class HookAttach extends CommandBase
 {
- 
-  private FrontClimbers frontClimbersSubsystem;
+  private Hooks hooksSubsystem;
 
   // ctor
-  public FrontClimbersExtended(FrontClimbers frontClimbers)
+  public HookAttach(Hooks hooks)
   {
-    frontClimbersSubsystem = frontClimbers;
+    hooksSubsystem = hooks;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(hooksSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -32,7 +32,7 @@ public class FrontClimbersExtended extends CommandBase
   @Override
   public void execute()
   {
-    frontClimbersSubsystem.setClimberPostion(0);
+    // TODO
   }
 
   // Called once the command ends or is interrupted.

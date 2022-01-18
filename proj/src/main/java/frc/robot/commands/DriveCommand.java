@@ -2,25 +2,24 @@
 // Bischop Blanchet Robotics
 // Historic home of the 'BraveBots'
 // FRC - Rapid React - 2022
-// File: FrontClimbersEndGame.java
-// Intent: Move the climbers through their end of game sequence.
+// File: DriveCommand.java
+// Intent: The long running command to take in arcade style input 
+// from controller and drive robot accordingly.
 // ************************************************************
 
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
-import frc.robot.subsystems.FrontClimbers;
+import frc.robot.subsystems.DriveTrain;
 
-public class FrontClimbersExtended extends CommandBase
+public class DriveCommand extends CommandBase
 {
- 
-  private FrontClimbers frontClimbersSubsystem;
+  private DriveTrain driveTrainSubsystem;
 
   // ctor
-  public FrontClimbersExtended(FrontClimbers frontClimbers)
+  public DriveCommand(DriveTrain driveTrain)
   {
-    frontClimbersSubsystem = frontClimbers;
+    driveTrainSubsystem = driveTrain;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -30,10 +29,7 @@ public class FrontClimbersExtended extends CommandBase
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute()
-  {
-    frontClimbersSubsystem.setClimberPostion(0);
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
@@ -41,8 +37,7 @@ public class FrontClimbersExtended extends CommandBase
 
   // Returns true when the command should end.
   @Override
-  public boolean isFinished()
-  {
+  public boolean isFinished() {
     return false;
   }
 }
