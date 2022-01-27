@@ -2,25 +2,23 @@
 // Bischop Blanchet Robotics
 // Historic home of the 'BraveBots'
 // FRC - Rapid React - 2022
-// File: DriveCommand.java
-// Intent: The long running command to take in arcade style input 
-// from controller and drive robot accordingly.
+// File: JawsForwardHighGoal.java
+// Intent: Forms a command to drive the Jaws to the high goal forward position.
 // ************************************************************
 
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.Constants;
+import frc.robot.subsystems.Jaws;
 
-public class DriveCommand extends CommandBase
-{
-  private DriveTrain driveTrainSubsystem;
-
-  // ctor
-  public DriveCommand(DriveTrain driveTrain)
-  {
-    driveTrainSubsystem = driveTrain;
+public class JawsForwardHighGoal extends CommandBase {
+  public Jaws jawsSubsystem;
+  
+  public JawsForwardHighGoal(Jaws jawsSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.jawsSubsystem = jawsSubsystem;
+    addRequirements(jawsSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -29,7 +27,13 @@ public class DriveCommand extends CommandBase
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    jawsSubsystem.setJawsPosition(Constants.JawsForwardLowGoal);
+
+    System.out.println(jawsSubsystem.getPosition());
+
+
+  }
 
   // Called once the command ends or is interrupted.
   @Override
