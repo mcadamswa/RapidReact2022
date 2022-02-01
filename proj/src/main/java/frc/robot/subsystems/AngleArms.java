@@ -13,13 +13,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-
 import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.kForward;
 import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.kReverse;
 
 public class AngleArms extends SubsystemBase {
-  /** Creates a new AngleArm. */
-  
+
+  /** Creates a new AngleArm. */ 
   public AngleArms() {}
   
   private final DoubleSolenoid leftChassisAngleArmSolenoid = new DoubleSolenoid(null, 2,3); 
@@ -27,11 +26,12 @@ public class AngleArms extends SubsystemBase {
   private final DoubleSolenoid leftJawsAngleArmSolenoid = new DoubleSolenoid(null, 2,3); 
   private final DoubleSolenoid rightJawsAngleArmSolenoid = new DoubleSolenoid(null, 2,3); 
 
-  public void enguageChassis(){
+  public void engageChassis(){
     leftChassisAngleArmSolenoid.set(kForward);
     rightChassisAngleArmSolenoid.set(kForward);
   }
-  public void disenguageChassis(){
+
+  public void disengageChassis(){
     leftChassisAngleArmSolenoid.set(kReverse);
     rightChassisAngleArmSolenoid.set(kReverse);
   }
@@ -40,9 +40,15 @@ public class AngleArms extends SubsystemBase {
     leftJawsAngleArmSolenoid.set(kForward);
     rightJawsAngleArmSolenoid.set(kForward);
   }
+
+
   public void disenguageJaws(){
     leftJawsAngleArmSolenoid.set(kReverse);
     rightJawsAngleArmSolenoid.set(kReverse);
+  }
+
+  public void setPower(double power){
+
   }
   
   @Override

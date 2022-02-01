@@ -12,25 +12,35 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.BallStorage;
 import frc.robot.subsystems.Interfaces;
 import frc.robot.subsystems.Pneumatics;
 
 public class ShooterForwardHighShot extends CommandBase {
  
-  public Shooter ShooterSubsystem;
-  public Pneumatics PneumaticsSubsystem;
+  public Shooter shooterSubsystem;
+  public Pneumatics pneumaticsSubsystem;
   public Interfaces interfacesSubsystem;
+  public BallStorage ballStorageSubsystem;
 
-  public ShooterForwardHighShot(Shooter ShooterSubystem, Pneumatics PneumaticsSubsystem, Interfaces interfacesSubsystem) {
+  public ShooterForwardHighShot(
+    Shooter ShooterSubsystem, 
+    Pneumatics PneumaticsSubsystem, 
+    Interfaces InterfacesSubsystem,
+    BallStorage BallStorageSubsystem
+    ) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.ShooterSubsystem = ShooterSubystem;
-    addRequirements(ShooterSubystem);
+    this.shooterSubsystem = ShooterSubsystem;
+    addRequirements(ShooterSubsystem);
 
-    this.PneumaticsSubsystem = PneumaticsSubsystem;
+    this.pneumaticsSubsystem = PneumaticsSubsystem;
     addRequirements(PneumaticsSubsystem);
 
-    this.interfacesSubsystem = interfacesSubsystem;
-    addRequirements(interfacesSubsystem);
+    this.interfacesSubsystem = InterfacesSubsystem;
+    addRequirements(InterfacesSubsystem);
+
+    this.ballStorageSubsystem = BallStorageSubsystem;
+    addRequirements(BallStorageSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -40,10 +50,14 @@ public class ShooterForwardHighShot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ShooterSubsystem.barf(interfacesSubsystem.getXboxRawAxis(2));
-    System.out.println(interfacesSubsystem.getXboxRawAxis(2));
-    PneumaticsSubsystem.solenoidShooterJawsForward();
-    PneumaticsSubsystem.solenoidShooterJawsForward();
+
+    shooterSubsystem.shootHigh();
+    ballStorageSubsystem.retrieve();
+
+    //ShooterSubsystem.barf(interfacesSubsystem.getXboxRawAxis(2));
+    //System.out.println(interfacesSubsystem.getXboxRawAxis(2));
+    //PneumaticsSubsystem.solenoidShooterJawsForward();
+    //PneumaticsSubsystem.solenoidShooterJawsForward();
   }
 
   // Called once the command ends or is interrupted.

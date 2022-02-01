@@ -14,16 +14,33 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.AngleArms;
+import frc.robot.subsystems.Interfaces;
+import frc.robot.subsystems.Jaws;
 
 public class AngleArmEngageJaws extends CommandBase {
+
   private AngleArms angleArmSubsystem;
+  private Interfaces interfacesSubsystem;
+  private Jaws jawsSubsystem;
   private Timer timer = new Timer();
   private boolean done;
 
-  public AngleArmEngageJaws(AngleArms angleArmSubsystem) {
+   // TODO - why is it that we need the jaws and the interface here?
+  // cotr
+  public AngleArmEngageJaws(
+    AngleArms AngleArmSubsystem,
+    Interfaces InterfacesSubsystem,
+    Jaws JawsSubsystem
+  ) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.angleArmSubsystem = angleArmSubsystem;
-    addRequirements(angleArmSubsystem);
+    this.angleArmSubsystem = AngleArmSubsystem;
+    addRequirements(AngleArmSubsystem);
+
+    this.interfacesSubsystem = InterfacesSubsystem;
+    addRequirements(InterfacesSubsystem);
+
+    this.jawsSubsystem = JawsSubsystem;
+    addRequirements(JawsSubsystem);
   }  
 
   // Called when the command is initially scheduled.
@@ -39,9 +56,9 @@ public class AngleArmEngageJaws extends CommandBase {
   public void execute() {
     angleArmSubsystem.enguageJaws();
     if (timer.hasElapsed(Constants.AngleArmTiming)){
-      angleArmSubsystem.disenguageChassis();
+      angleArmSubsystem.disengageChassis();
       done = true;
-    } 
+    }
   }
 
   // Called once the command ends or is interrupted.

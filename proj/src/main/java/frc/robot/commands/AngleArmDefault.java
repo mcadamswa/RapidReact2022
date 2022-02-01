@@ -16,14 +16,17 @@ import frc.robot.Constants;
 import frc.robot.subsystems.AngleArms;
 
 public class AngleArmDefault extends CommandBase {
+  
   private AngleArms angleArmSubsystem;
   private Timer timer = new Timer();
   private boolean done;
 
-  public AngleArmDefault(AngleArms angleArmSubsystem) {
+  public AngleArmDefault(
+    AngleArms AngleArmSubsystem)
+  {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.angleArmSubsystem = angleArmSubsystem;
-    addRequirements(angleArmSubsystem);
+    this.angleArmSubsystem = AngleArmSubsystem;
+    addRequirements(AngleArmSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -37,7 +40,7 @@ public class AngleArmDefault extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    angleArmSubsystem.enguageChassis();
+    angleArmSubsystem.engageChassis();
     if (timer.hasElapsed(Constants.AngleArmTiming)){
       angleArmSubsystem.disenguageJaws();
       done = true;

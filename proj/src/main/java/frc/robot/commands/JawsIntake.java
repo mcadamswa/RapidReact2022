@@ -15,13 +15,14 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Jaws;
 
 public class JawsIntake extends CommandBase {
+
   public Jaws jawsSubsystem;
   boolean done;
 
-  public JawsIntake(Jaws jawsSubsystem) {
+  public JawsIntake(Jaws JawsSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.jawsSubsystem = jawsSubsystem;
-    addRequirements(jawsSubsystem);
+    this.jawsSubsystem = JawsSubsystem;
+    addRequirements(JawsSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -31,12 +32,10 @@ public class JawsIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    jawsSubsystem.setJawsPosition(Constants.JawsShooter);
+    jawsSubsystem.setJawsPosition(Constants.JawsIntakePosition);
 
    // jawsSubsystem.isFinished(done, Constants.JawsDefualt);
    System.out.println(jawsSubsystem.getPosition());
-
-
   }
 
   // Called once the command ends or is interrupted.

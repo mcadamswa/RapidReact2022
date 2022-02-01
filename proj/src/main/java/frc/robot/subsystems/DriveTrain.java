@@ -10,7 +10,6 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
@@ -79,6 +78,19 @@ public class DriveTrain extends SubsystemBase
         25, // Trigger Threshold(amp) |
         1.0)); // Trigger Threshold Time(s)
     //rightFront..configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+  }
+
+  public void driveControl(double leftSpeed, double rightSpeed)
+  {
+    //sets motors to imput speeds (sets to control motor and consequently follower motor)
+    leftRear.set(leftSpeed);
+    rightRear.set(rightSpeed);
+  }
+
+  // TODO - what does 'defaultM' mean?
+  public void defaultM(){ //
+    leftRear.set(0);
+    rightRear.set(0);
   }
 
   @Override

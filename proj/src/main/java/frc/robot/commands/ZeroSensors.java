@@ -12,30 +12,26 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Jaws;
-import frc.robot.subsystems.BallStorage;
 import frc.robot.subsystems.TelescopingArms;
 
 public class ZeroSensors extends CommandBase {
-  /** Creates a new zeroSensors. 
- * @param m_climbers2
- * @param m_climbers1
- * @param m_Jaws*/
+ /*
+ * @param Jaws
+ * @param TelescopingArms
+ */
 
-  public Jaws m_Jaws;
-  public BallStorage m_climbers1;
-  public TelescopingArms m_climbers2;
+  public Jaws jaws;
+  public TelescopingArms telescopingArms;
 
-  public ZeroSensors(Jaws m_Jaws, BallStorage m_climbers1, TelescopingArms m_climbers2) {
+  /** Creates a new zeroSensors.  */
+  public ZeroSensors(Jaws Jaws, TelescopingArms TelescopingArms) {
     // Use addRequirements() here to declare subsystem dependencies.
 
-    this.m_Jaws = m_Jaws;
-    addRequirements(m_Jaws);
+    this.jaws = Jaws;
+    addRequirements(Jaws);
 
-    this.m_climbers1 = m_climbers1;
-    addRequirements(m_climbers1);
-
-    this.m_climbers2 = m_climbers2;
-    addRequirements(m_climbers2);
+    this.telescopingArms = TelescopingArms;
+    addRequirements(TelescopingArms);
   }
 
   // Called when the command is initially scheduled.
@@ -45,12 +41,13 @@ public class ZeroSensors extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Jaws.zeroSensors();
-    //m_climbers1.zeroSensors();
-    //m_climbers2.zeroSensors();
+
     //TODO add anyother sensors 
 
-    System.out.println(m_Jaws.getPosition());
+    jaws.zeroSensors();
+    telescopingArms.zeroSensors();
+
+    System.out.println(jaws.getPosition());
   }
 
   // Called once the command ends or is interrupted.

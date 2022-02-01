@@ -8,9 +8,6 @@
 
 // ʕ •ᴥ•ʔ ʕ•ᴥ•  ʔ ʕ  •ᴥ•ʔ ʕ •`ᴥ´•ʔ ʕ° •° ʔ ʕ •ᴥ•ʔ ʕ•ᴥ•  ʔ ʕ  •ᴥ•ʔ ʕ •`ᴥ´•ʔ ʕ° •° ʔ 
 
-// TODO - Owen what is this for?  Are we going to self-level the robot?  I dobut it.
-// this needs work
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -18,23 +15,20 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Jaws;
 
 public class Level extends CommandBase {
-  /** Creates a new level. */
+
   double gyroValue;
   double gyroLevel;
   double JawsTarget;
   double degreeToEncoderTick;
-
   boolean done;
-
   private Jaws jawsSubsystem;
-
   AnalogGyro gyro = new AnalogGyro(0); // ANA Ch. 0
 
-
-  public Level(Jaws jawsSubsystem) {
+  /** Creates a new level. */
+  public Level(Jaws JawsSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.jawsSubsystem = jawsSubsystem;
-    addRequirements(jawsSubsystem);
+    this.jawsSubsystem = JawsSubsystem;
+    addRequirements(JawsSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -54,9 +48,9 @@ public class Level extends CommandBase {
     gyroLevel = 0; // ?????
     degreeToEncoderTick = 20;
 
-    JawsTarget = gyroValue/175  * -degreeToEncoderTick; // Change negitive if it makes it swing more
+    JawsTarget = gyroValue/175  * -degreeToEncoderTick; // Change negative if it makes it swing more
 
-    //divied by 175 make a gyro tick equal to one degree
+    //divided by 175 make a gyro tick equal to one degree
 
 
 
@@ -65,8 +59,6 @@ public class Level extends CommandBase {
     //double slow = 0.24;
 
     System.out.println(Math.round(gyro.getAngle()));
-
-  
 
    /* 
   if (Math.abs(gyro.getAngle() <= 3)) {

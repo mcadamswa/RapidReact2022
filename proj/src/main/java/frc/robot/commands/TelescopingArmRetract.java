@@ -11,7 +11,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.Interfaces;
 import frc.robot.subsystems.TelescopingArms;
 
@@ -41,22 +40,7 @@ public class TelescopingArmRetract extends CommandBase {
   @Override
   public void execute() {
  
-    imput = Math.round(interfaceSubsystem.getXboxRawAxis(Constants.joystickX) * 10) / 10;
-    int imputToDegree = 2048/360 * 2000;
-
-    double targetPos = imput * imputToDegree;
-    double currentPOS = Math.round(telescopingArmSubsystem.getPosition());
-  
-    System.out.println(currentPOS);
-    System.out.println("imput" + imput);
-    
-    if(targetPos < currentPOS-300 || targetPos > currentPOS+300){
-    
-       telescopingArmSubsystem.setClimberPostion(targetPos);
-    }
-
-     pov = interfaceSubsystem.getXboxPov();
-     // TODO
+    //TODO add retract method for in the pit 
   }
 
   // Called once the command ends or is interrupted.

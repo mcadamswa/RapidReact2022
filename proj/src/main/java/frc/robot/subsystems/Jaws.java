@@ -24,7 +24,7 @@ public class Jaws extends SubsystemBase {
 
 
   private final WPI_TalonFX rightMotor = new WPI_TalonFX(Constants.jawsMotorRightCanId);
-  private final WPI_TalonFX leftrightMotor = new WPI_TalonFX(Constants.jawsMotorRightCanId);
+  private final WPI_TalonFX leftMotor = new WPI_TalonFX(Constants.jawsMotorRightCanId);
 
   /*
    * Talon FX has 2048 units per revolution
@@ -38,6 +38,8 @@ public class Jaws extends SubsystemBase {
   public Jaws() {
 
     rightMotor.configFactoryDefault();
+    leftMotor.setInverted(true);
+    leftMotor.follow(rightMotor);
     
     rightMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, Constants.kPIDLoopIdx,
     Constants.kTimeoutMs);
@@ -95,12 +97,15 @@ public class Jaws extends SubsystemBase {
     rightMotor.set(TalonFXControlMode.MotionMagic, targetPos);
   }
   
+  public void jawsManual(double speed){
+    rightMotor.set(TalonFXControlMode.PercentOutput, speed);
+  }
+
   //public void isFinished(boolean done, double targetPos){
    //if(rightMotor.getSelectedSensorPosition() >= targetPos + 100 || rightMotor.getSelectedSensorPosition() <=targetPos - 100){
      //done = true;
     //} else { done = false; }
   //}
-
 
   public void setInverted() {
     rightMotor.setInverted(true);

@@ -17,10 +17,10 @@ import frc.robot.subsystems.Jaws;
 public class JawsForwardLowGoal extends CommandBase {
   public Jaws jawsSubsystem;
   
-  public JawsForwardLowGoal(Jaws jawsSubsystem) {
+  public JawsForwardLowGoal(Jaws JawsSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.jawsSubsystem = jawsSubsystem;
-    addRequirements(jawsSubsystem);
+    this.jawsSubsystem = JawsSubsystem;
+    addRequirements(JawsSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -30,11 +30,9 @@ public class JawsForwardLowGoal extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    jawsSubsystem.setJawsPosition(Constants.JawsForwardLowGoal);
+    jawsSubsystem.setJawsPosition(Constants.JawsLowGoalPosition);
 
     System.out.println(jawsSubsystem.getPosition());
-
-
   }
 
   // Called once the command ends or is interrupted.

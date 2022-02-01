@@ -12,18 +12,27 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.subsystems.Interfaces;
 import frc.robot.subsystems.Jaws;
 
 public class JawsDefault extends CommandBase {
+
   private final Jaws jawsSubsystem;
+  private final Interfaces interfacesSubsystem;
   boolean done;
 
-
-  /** Creates a new JawsDefualt. */
-  public JawsDefault(Jaws jawsSubsystem) {
+  /** Creates a new JawsDefault. */
+  public JawsDefault(
+    Jaws JawsSubsystem,
+    Interfaces InterfacesSubsystem
+    ) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.jawsSubsystem = jawsSubsystem;
-    addRequirements(jawsSubsystem);
+    this.jawsSubsystem = JawsSubsystem;
+    addRequirements(JawsSubsystem);
+
+    this.interfacesSubsystem = InterfacesSubsystem;
+    addRequirements(InterfacesSubsystem);
+
     }
 
   // Called when the command is initially scheduled.
@@ -35,8 +44,11 @@ public class JawsDefault extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    jawsSubsystem.setJawsPosition(Constants.JawsDefualt);
-    //RobotContainer.m_Jaws.setJawsPosition(0);
+    // TODO - Owen, seems like JawsDefault should be a default position of the jaws
+    // not manual use of the jaws.  Does the 'default' name make you think of manual movement?
+    jawsSubsystem.jawsManual(interfacesSubsystem.getXboxRawAxis(Constants.joystickY));
+    //TODO set this to the right axis 
+    //RobotContainer.m_Jaws.setJawsPosition(0); 
 
   //  jawsSubsystem.isFinished(done, Constants.JawsDefualt);
     System.out.println(jawsSubsystem.getPosition());
