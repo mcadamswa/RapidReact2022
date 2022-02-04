@@ -17,14 +17,21 @@ import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Jaws extends SubsystemBase {
 
+  @Override
+  public void setDefaultCommand(Command myCommand) {
+      // TODO Auto-generated method stub
+      super.setDefaultCommand(myCommand);
+  }
+
 
   private final WPI_TalonFX rightMotor = new WPI_TalonFX(Constants.jawsMotorRightCanId);
-  private final WPI_TalonFX leftMotor = new WPI_TalonFX(Constants.jawsMotorRightCanId);
+  private final WPI_TalonFX leftMotor = new WPI_TalonFX(Constants.jawsMotorLeftCanId);
 
   /*
    * Talon FX has 2048 units per revolution
@@ -38,18 +45,19 @@ public class Jaws extends SubsystemBase {
   public Jaws() {
 
     rightMotor.configFactoryDefault();
-    leftMotor.setInverted(true);
     leftMotor.follow(rightMotor);
-    
+    leftMotor.setInverted(true);
+    rightMotor.setInverted(true);
+    leftMotor.setNeutralMode(NeutralMode.Brake);
+    rightMotor.setNeutralMode(NeutralMode.Brake);
+
     rightMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, Constants.kPIDLoopIdx,
     Constants.kTimeoutMs);
 
     rightMotor.setSensorPhase(false);
-    rightMotor.setInverted(false);
 
     rightMotor.configNeutralDeadband(0.001, Constants.kTimeoutMs);
 
-    
     rightMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, Constants.kTimeoutMs);
     rightMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, Constants.kTimeoutMs);
 

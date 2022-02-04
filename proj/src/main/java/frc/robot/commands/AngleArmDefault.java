@@ -21,6 +21,8 @@ public class AngleArmDefault extends CommandBase {
   private Timer timer = new Timer();
   private boolean done;
 
+  
+
   public AngleArmDefault(
     AngleArms AngleArmSubsystem)
   {
@@ -42,7 +44,7 @@ public class AngleArmDefault extends CommandBase {
   public void execute() {
     angleArmSubsystem.engageChassis();
     if (timer.hasElapsed(Constants.AngleArmTiming)){
-      angleArmSubsystem.disengageJaws();
+      //angleArmSubsystem.disengageJaws();
       done = true;
     }
   }
