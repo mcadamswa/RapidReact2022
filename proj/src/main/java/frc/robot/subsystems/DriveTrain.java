@@ -21,6 +21,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+import frc.robot.common.MotorUtils;
+
 public class DriveTrain extends SubsystemBase
 {
 
@@ -92,22 +94,14 @@ public class DriveTrain extends SubsystemBase
   // drive motor speeds
   public void arcadeDrive(double yAxisValue, double xAxisValue)
   {
-    if(yAxisValue > 1.0 || yAxisValue < -1.0)
-    {
-      throw new IllegalArgumentException(
-        "yAxisValue outside of bounds - valid range from -1.0 to 1.0");
-    }
-    if(xAxisValue > 1.0 || xAxisValue < -1.0)
-    {
-      throw new IllegalArgumentException(
-        "xAxisValue outside of bounds - valid range from -1.0 to 1.0");
-    }
+    MotorUtils.validateMotorSpeedInput(yAxisValue, "yAxisValue ", null);
+    MotorUtils.validateMotorSpeedInput(yAxisValue, "xAxisValue ", null);
     // the heart of arcade is the calculation below
     double leftSpeed = yAxisValue - xAxisValue;
     double rightSpeed = yAxisValue + xAxisValue;
     driveControl(
-      this.truncateValue(leftSpeed, -1.0, 1.0),
-      this.truncateValue(rightSpeed, -1.0, 1.0));
+      MotorUtils.truncateValue(leftSpeed, -1.0, 1.0),
+      MotorUtils.truncateValue(rightSpeed, -1.0, 1.0));
   }
 
   public void driveControl(double leftSpeed, double rightSpeed)
@@ -128,21 +122,6 @@ public class DriveTrain extends SubsystemBase
   {
     // This method will be called once per scheduler run
   }
-
-  // A method to make sure that values are retained within the boundaries
-  private double truncateValue(double value, double minBoundary, double maxBoundary)
-  {
-    double trimmedValue = value;
-    if(value < minBoundary)
-    {
-      trimmedValue = minBoundary;
-    }
-    else if (value > maxBoundary)
-    {
-      trimmedValue = maxBoundary;
-    }
-    return trimmedValue;
-  }  
-  
+ 
 }
  
