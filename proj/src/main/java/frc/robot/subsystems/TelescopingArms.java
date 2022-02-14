@@ -18,6 +18,7 @@ import com.revrobotics.CANSparkMax.*;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.common.*;
@@ -91,6 +92,7 @@ public class TelescopingArms extends SubsystemBase
     public TelescopingArms()
     {
       initializeMotors();
+      CommandScheduler.getInstance().registerSubsystem(this);
     }
 
     /* *********************************************************************
@@ -195,16 +197,15 @@ public class TelescopingArms extends SubsystemBase
 
     /**
     * This method helps decide the default command
-    *
-    * @param  value - The default command
+    * @param  myCommand - The default command
     */
-    // 
     @Override
     public void setDefaultCommand(Command myCommand)
     {
+        // TODO Auto-generated method stub
         super.setDefaultCommand(myCommand);
     }
-
+  
     /**
     * a method exposed to callers to set the telescopingArms height
     *
@@ -228,8 +229,7 @@ public class TelescopingArms extends SubsystemBase
     */
     public void setTelescopingArmsSpeedManual(double telescopingArmsSpeed)
     {
-      MotorUtils.validateMotorSpeedInput(telescopingArmsSpeed, "TelescopingArmsSpeed", null);
-      rightMotor.set(telescopingArmsSpeed);
+      leftMotor.set(MotorUtils.truncateValue(telescopingArmsSpeed, -1.0, 1.0));
     }
 
     /**
@@ -366,17 +366,17 @@ public class TelescopingArms extends SubsystemBase
     // this method sets all of the key settings that will help in motion magic
     private void initializeMotors()
     {
-      leftMotor.restoreFactoryDefaults();
-      rightMotor.restoreFactoryDefaults(); 
-  
+      rightMotor.restoreFactoryDefaults();  
+      rightPidController = leftMotor.getPIDController();
+      rightEncoder = leftMotor.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, Constants.countPerRevHallSensor);
       rightMotor.follow(leftMotor);
-      rightMotor.setIdleMode(IdleMode.kBrake);
+
+      leftMotor.restoreFactoryDefaults();
+      leftMotor.setIdleMode(IdleMode.kBrake);
   
       // initialize PID controller and encoder objects
       leftPidController = leftMotor.getPIDController();
-      rightPidController = rightMotor.getPIDController();
       leftEncoder = leftMotor.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, Constants.countPerRevHallSensor);
-      rightEncoder = leftMotor.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, Constants.countPerRevHallSensor);
   
       // PID coefficients
       kP = 5e-5; 
@@ -405,19 +405,6 @@ public class TelescopingArms extends SubsystemBase
       leftPidController.setSmartMotionMinOutputVelocity(minVel, smartMotionSlot);
       leftPidController.setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
       leftPidController.setSmartMotionAllowedClosedLoopError(allowedErr, smartMotionSlot);
-      
-      // set PID coefficients
-      rightPidController.setP(kP);
-      rightPidController.setI(kI);
-      rightPidController.setD(kD);
-      rightPidController.setIZone(kIz);
-      rightPidController.setFF(kFF);
-      rightPidController.setOutputRange(kMinOutput, kMaxOutput);
-  
-      rightPidController.setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
-      rightPidController.setSmartMotionMinOutputVelocity(minVel, smartMotionSlot);
-      rightPidController.setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
-      rightPidController.setSmartMotionAllowedClosedLoopError(allowedErr, smartMotionSlot);
     }
 
     private void trimAndRecordLeftPower(double currentReading)

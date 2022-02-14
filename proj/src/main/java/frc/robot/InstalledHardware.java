@@ -32,15 +32,15 @@ public class InstalledHardware
     // Basic Hardware
     public static final boolean powerDistributionPannelInstalled = true;
     
-    // Communication Hardware
+    // Onboard Hardware - Orentation/Navigation Hardware
     public static final boolean wifiRadioInstalled = false;
+    public static final boolean navxInstalled = true;
+    public static final boolean limelightInstalled = false;
+
+    // External Input Hardware
     public static final boolean buttonBoardInstalled = true;
     public static final boolean driverXboxControllerInstalled = true;
     public static final boolean coDriverXboxControllerInstalled = true;
-
-    // Orentation/Navigation Hardware
-    public static final boolean navxInstalled = true;
-    public static final boolean limelightInstalled = false;
 
     // Pnematics Hardware
     public static final boolean compressorInstalled = false;
@@ -55,8 +55,8 @@ public class InstalledHardware
     public static final boolean rightRearDriveMotorInstalled = true;
 
     // TelescopingArms Related Hardware
-    public static final boolean leftTelescopingArmsDriveMotorInstalled = false;
-    public static final boolean rightTelescopingArmsDriveMotorInstalled = false;
+    public static final boolean leftTelescopingArmsDriveMotorInstalled = true;
+    public static final boolean rightTelescopingArmsDriveMotorInstalled = true;
 
     // Jaws Related Hardware
     public static final boolean topJawsDriveMotorInstalled = false;
@@ -74,7 +74,7 @@ public class InstalledHardware
     public static final boolean forwardBallStorageBeamBreakSensorInstalled = false;
     public static final boolean rearBallStorageBeamBreakSensorInstalled = false;
 
-    // Jaws Related Hardware
-    public static final boolean angleArmsToJawsCylindarSolenoidPneumaticsInstalled = true;
-    public static final boolean angleArmsToChassisCylindarSolenoidPneumaticsInstalled = true;
+    // Angle Arms Related Hardware
+    public static final boolean angleArmsToJawsCylindarSolenoidPneumaticsInstalled = false;
+    public static final boolean angleArmsToChassisCylindarSolenoidPneumaticsInstalled = false;
 }
