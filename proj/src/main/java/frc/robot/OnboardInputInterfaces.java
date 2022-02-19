@@ -1,6 +1,6 @@
 // ************************************************************
 // Bishop Blanchet Robotics
-// Historic home of the 'BraveBots'
+// Home of the Cybears
 // FRC - Rapid React - 2022
 // File: OnboardInputInterfaces.java
 // Intent: Forms a class that grants access to onboard inputs.
@@ -103,7 +103,7 @@ public class OnboardInputInterfaces
         double rtnVal = 0.0;
         if(navigationSensor != null)
         {
-            switch(Constants.roboRioOrentation)
+            switch(Constants.roboRioOrientation)
             {
                 // navx - X positive direction, implies pitch comes from negative roll
                 case RelayForward:
@@ -140,7 +140,7 @@ public class OnboardInputInterfaces
         double rtnVal = 0.0;
         if(navigationSensor != null)
         {
-            switch(Constants.roboRioOrentation)
+            switch(Constants.roboRioOrientation)
             {
                 // navx - X positive direction, implies roll comes from negative pitch
                 case RelayForward:
