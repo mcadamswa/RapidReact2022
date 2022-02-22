@@ -15,6 +15,9 @@ import frc.robot.common.Gains;
 import frc.robot.common.RoboRioOrientation;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
+import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -35,6 +38,10 @@ public final class Constants
   public static final double RevNeoEncoderTicksPerRevolution = 42; 
 
   // shooter 
+  // inverts - see: https://docs.ctre-phoenix.com/en/stable/ch13_MC.html#talon-fx-specific-inverts
+  public static TalonFXInvertType shooterBottomMotorInverted = TalonFXInvertType.Clockwise;
+  public static TalonFXInvertType shooterTopMotorInverted = TalonFXInvertType.CounterClockwise;
+  // Motor magic numbers
   public static final double bottomMotorForwardLowGoalSpeed = 0.8;
   public static final double topMotorForwardLowGoalSpeed = 0.7;
   public static final double bottomMotorForwardHighGoalSpeed = 1.0;
@@ -61,8 +68,8 @@ public final class Constants
   public static final double telescopingArmsToleranceInches = 0.25;
 
   // Ball storage \\
-  public static final double retrieveSpeed = 0;
-  public static final double storeSpeed = 0;
+  public static final double ballStoreSpeed = -0.4;
+  public static final double ballRetrieveSpeed = 0.4;
   public static final int maximumStoredBallCount = 2;
 
   // CAN BUS NUMBERS \\
@@ -108,13 +115,12 @@ public final class Constants
 
   // MOTOR SETTINGS \\
 
-  // Motor magic numbers
-  public static boolean driveMotorLeftFrontInverted = false;
-  public static boolean driveMotorLeftRearInverted = false;
-  public static boolean driveMotorRightFrontInverted = false;
-  public static boolean driveMotorRightRearInverted = false;
-
-  // TODO -  the code below needs work ... make it cleaner 
+  // Drive motor magic numbers
+  // inverts - see: https://docs.ctre-phoenix.com/en/stable/ch13_MC.html#talon-fx-specific-inverts
+  public static TalonFXInvertType driveMotorLeftFrontInverted = TalonFXInvertType.CounterClockwise;
+  public static TalonFXInvertType driveMotorLeftRearInverted = TalonFXInvertType.FollowMaster;
+  public static TalonFXInvertType driveMotorRightFrontInverted = TalonFXInvertType.Clockwise;
+  public static TalonFXInvertType driveMotorRightRearInverted = TalonFXInvertType.FollowMaster;
 
   // TIMING AND SPEEDS \\
   // AngleArm timing \\
@@ -123,11 +129,6 @@ public final class Constants
   // BallStorage timing \\
   public static final double BallStorageStoreTimingSeconds = 1.0;
   public static final double BallStorageRetrieveTimingSeconds = 0.3;
-
-  // substystem motor speeds \\
-  public static final double ShooterEatSpeed = 0.5;
-  public static final double ShooterBarfSpeed = 0.5;
-  public static final double ShooterDefault = 0.5;
 
   // HIDS \\
   // hid ports \\ 

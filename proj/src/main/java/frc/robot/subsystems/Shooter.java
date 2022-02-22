@@ -11,12 +11,16 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Shooter extends SubsystemBase {
+public class Shooter extends SubsystemBase implements Sendable
+{
   
   private WPI_TalonFX topMotor = new WPI_TalonFX(Constants.shooterMotorTopCanId);
   private WPI_TalonFX bottomMotor = new WPI_TalonFX(Constants.shooterMotorBottomCanId);
@@ -33,7 +37,8 @@ public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   public Shooter()
   {
-    bottomMotor.setInverted(true);
+    bottomMotor.setInverted(Constants.shooterBottomMotorInverted);
+    bottomMotor.setInverted(Constants.shooterTopMotorInverted);
     CommandScheduler.getInstance().registerSubsystem(this);
   }
   
@@ -41,6 +46,14 @@ public class Shooter extends SubsystemBase {
   public void periodic()
   {
     // This method will be called once per scheduler run
+  }
+
+  @Override
+  public void initSendable(SendableBuilder builder)
+  {
+    builder.addDoubleProperty("ShooterTopMotorSpeed", this::getTopMotorSpeed, null);
+    builder.addDoubleProperty("ShooterBottomMotorSpeed", this::getBottomMotorSpeed, null);
+    builder.addStringProperty("ShooterIntakeDescription", this::getShooterIntakeDescription, null);
   }
 
   public boolean intake()
@@ -96,5 +109,45 @@ public class Shooter extends SubsystemBase {
     double approximateMotorVelocityTicksPerSecond = motor.getSelectedSensorVelocity() * 10;
     return (approximateMotorVelocityTicksPerSecond > 
       this.talonMaximumTicksPerSecond * targetSpeed * this.velocitySufficientWarmupThreshold);
+  }
+
+  /**
+   * Gets the top motor speed setting
+   * @return the top motor controller output as decmil fraction
+   */
+  private double getTopMotorSpeed()
+  {
+    return topMotor.getMotorOutputPercent() / 100.0;
+  }
+
+  /**
+   * Gets the bottom motor speed setting
+   * @return the bottom motor controller output as decmil fraction
+   */
+  private double getBottomMotorSpeed()
+  {
+    return bottomMotor.getMotorOutputPercent() / 100.0;
+  }
+
+  private String getShooterIntakeDescription()
+  {
+    double topMotorSpeed = this.getTopMotorSpeed();
+    double bottomMotorSpeed = this.getBottomMotorSpeed();
+    if(topMotorSpeed == 0.0 && bottomMotorSpeed == 0.0)
+    {
+      return "Stopped";
+    }
+    else if (topMotorSpeed > 0.0 && bottomMotorSpeed > 0.0)
+    {
+      return "Shooting";
+    }
+    else if (topMotorSpeed > 0.0 && bottomMotorSpeed > 0.0)
+    {
+      return "Intaking";
+    }
+    else
+    {
+      return "Undefined";
+    }
   }
 }
