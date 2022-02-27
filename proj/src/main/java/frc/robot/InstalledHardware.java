@@ -61,16 +61,16 @@ public class InstalledHardware
     // Jaws Related Hardware
     public static final boolean topJawsDriveMotorInstalled = true;
     public static final boolean bottomJawsDriveMotorInstalled = true;
-    public static final boolean intakeStopJawsLmitSwitchInstalled = false;
-    public static final boolean jawsClutchCylinderSolenoidPneumaticsInstalled = false;
+    public static final boolean intakeStopJawsLmitSwitchInstalled = true;
+    public static final boolean jawsClutchCylinderSolenoidPneumaticsInstalled = true;
 
     // Shooter Related Hardware
     public static final boolean topShooterDriveMotorInstalled = false;
     public static final boolean bottomShooterDriveMotorInstalled = false;
 
     // Ball Storage Related Hardware
-    public static final boolean topBallStorageMotorInstalled = true;
-    public static final boolean bottomBallStorageMotorInstalled = true;
+    public static final boolean topBallStorageMotorInstalled = false;
+    public static final boolean bottomBallStorageMotorInstalled = false;
     public static final boolean forwardBallStorageBeamBreakSensorInstalled = false;
     public static final boolean rearBallStorageBeamBreakSensorInstalled = false;
 
